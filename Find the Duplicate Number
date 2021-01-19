@@ -1,0 +1,26 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int number = 0;
+        
+        for(int i=0;i<nums.length;i++){
+            int val = nums[i];
+            if(map.containsKey(val)){
+                Integer key = map.get(val);
+                map.put(nums[i], key+1);
+            }else{
+                Integer key = 1;
+                map.put(nums[i], key);
+            }
+        }
+        
+        for( Map.Entry<Integer, Integer> entry : map.entrySet() ){           
+            if(entry.getValue() >=2){
+                number = entry.getKey();
+                break;
+            }            
+        }
+        
+        return number;
+    }
+}

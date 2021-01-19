@@ -1,0 +1,16 @@
+class Solution:
+    def average(self, salary: List[int]) -> float:
+        maxVal = max(salary)
+        minVal = min(salary)
+        
+        sumOfArray = sum(salary) - maxVal - minVal
+        arrayLength = len(salary)-2
+        
+        print(sumOfArray)
+        print(arrayLength)
+        
+        result = sumOfArray / arrayLength
+        
+        return result
+        
+        

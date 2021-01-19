@@ -1,0 +1,17 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        boolean[] output = new boolean[nums.length+1];
+        
+        for(int i=0; i<nums.length;i++){
+            output[nums[i]] = true;
+        }
+        int result = -1;
+        for(int i=0; i<output.length;i++){
+            if(output[i] == false){
+                result = i;
+            }
+        }
+        
+        return result;
+    }
+}

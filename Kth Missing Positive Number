@@ -1,0 +1,30 @@
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int result = 0, ptr=0,temp=0, counter = 0;
+        int[] check = new int[arr.length+k+1];
+        
+        for(int i=0;i<check.length;i++){
+            check[i] = i+1;
+        }        
+        try{
+            for(int i=0;i<check.length;i++){
+                if(check[i] != arr[ptr]){
+                    counter++;
+                    temp = check[i];
+                }else{
+                    ptr++;
+                }
+
+                if(k==counter){
+                    result = temp;
+                    break;
+                }
+            }    
+        }catch(ArrayIndexOutOfBoundsException e){
+            result = check[arr.length+k-1];
+        }
+        
+
+        return result;
+    }
+}

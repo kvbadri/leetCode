@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        boolean result = false;
+        int sum = 0;
+        
+        if(x<0){
+            result = false;
+        }else{
+            int check = x;
+            while(x>0){
+                long temp = (long)x%10;
+                sum = (sum * 10) + (int)temp;
+                x = x/10;    
+            }
+            
+            if(check == sum){
+                result = true;
+            }            
+        }
+        return result;
+    }
+}

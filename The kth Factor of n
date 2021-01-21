@@ -1,0 +1,19 @@
+class Solution {
+    public int kthFactor(int n, int k) {        
+        int index = 0;
+        int[] factors = new int[n];
+        for(int i=1; i<=n;i++){
+            int temp = n % i;
+            if(temp == 0){
+                factors[index] = i;
+                index++;
+            }
+        }        
+        for(int ptr = index;ptr<n;ptr++){
+            factors[ptr] = -1;
+        }
+        
+        return factors[k-1];
+        
+    }
+}

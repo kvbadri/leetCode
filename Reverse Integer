@@ -1,0 +1,27 @@
+class Solution {
+    public int reverse(int x) {
+        long sum = 0;
+        int temp;
+        int y = x;
+        
+        if(y < 0){
+            x = x * -1;
+        }
+        
+        while(x > 0){
+            temp = x % 10;
+            sum = (sum * 10) + temp;
+            x = x / 10;
+        }                
+        
+        if(y < 0){
+            sum = sum * -1;
+        }
+        
+        if(sum > Integer.MAX_VALUE || sum < Integer.MIN_VALUE){
+            sum = 0;
+        }
+            
+        return (int) sum;
+    }
+}

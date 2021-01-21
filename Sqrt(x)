@@ -1,0 +1,11 @@
+class Solution {
+    public int mySqrt(int x) {
+        
+        double sqroot = x;
+        
+        double result = Math.sqrt(sqroot);
+        
+        return (int)result;
+        
+    }
+}

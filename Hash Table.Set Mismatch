@@ -1,0 +1,42 @@
+class Solution {
+    public int[] findErrorNums(int[] nums) {
+        int[] resultArray = new int[2];
+        int missingElement = 1;
+        Arrays.sort(nums);
+        
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        
+        for(int i=0;i<nums.length;i++){
+            int val = nums[i];
+            if(map.containsKey(val)){
+                Integer key = map.get(val);
+                map.put(nums[i], key+1);
+            }else{
+                Integer key = 1;
+                map.put(nums[i], key);
+            }
+        }
+        
+        System.out.println(map);
+        
+        for(Map.Entry<Integer, Integer> entry : map.entrySet() ){           
+            if(entry.getValue() ==2){
+                int number = entry.getKey();
+                resultArray[0] = number;                
+                break;
+            }            
+        }                
+        
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(missingElement != entry.getKey()){
+                resultArray[1] = missingElement;
+            }else{
+                missingElement++;
+            }
+        }
+        
+        resultArray[1] = missingElement;
+        
+        return resultArray;
+    }
+}

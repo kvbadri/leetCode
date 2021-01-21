@@ -1,0 +1,49 @@
+class Solution {
+    public boolean isValid(String s) {
+        char[] input = new char[s.length()];
+        input = s.toCharArray();
+        
+        boolean result = true;
+        
+        Stack<Character> charStack = new Stack<>();
+        
+        for(int i=0;i<input.length;i++){
+            char temp1 = input[i];
+            if(temp1 == '(' || temp1 == '{' || temp1 == '['){
+                charStack.push(input[i]);
+            }else if(temp1 == ')' || temp1 == '}' || temp1 == ']'){
+                if(!charStack.isEmpty()){
+                    if(temp1 == ')'){
+                        char temp2 = charStack.pop();
+                        if(temp2 == '[' || temp2 == '{'){
+                            result = false;
+                            break;
+                        }
+                    }else if(temp1 == ']'){
+                        char temp2 = charStack.pop();
+                        if(temp2 == '{' || temp2 == '('){
+                            result = false;
+                            break;
+                        }
+                    }else if(temp1 == '}'){
+                        char temp2 = charStack.pop();
+                        if(temp2 == '(' || temp2 == '['){
+                            result = false;
+                            break;
+                        }
+                    }    
+                }
+                else{
+                    result = false;
+                    break;
+                }
+            }
+        }
+        
+        if(!charStack.isEmpty()){
+            result = false;
+        }
+        return result;
+        
+    }
+}

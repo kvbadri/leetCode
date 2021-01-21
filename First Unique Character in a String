@@ -1,0 +1,40 @@
+import java.util.Map.Entry;
+class Solution {
+    public int firstUniqChar(String s) {
+        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>(); 
+        int index = -1;
+        Character firstLetter;
+        if(s == null){
+            return index;
+        }else{
+            for(int i=0;i<s.length();i++){
+                Character c = s.charAt(i);
+            
+                if(map.containsKey(c)){
+                    Integer val = map.get(c);
+                    map.put(c, val+1);
+                }else{
+                    Integer val = 1;
+                    map.put(c, val);
+                }            
+            }                
+            System.out.println(map);                             
+        }
+        
+        for(Entry<Character, Integer> entry: map.entrySet()) {
+            if(entry.getValue() == 1) {
+                firstLetter = entry.getKey();  
+                System.out.println(firstLetter);  
+                for(int i=0;i<s.length();i++){
+                    if(s.charAt(i) == firstLetter){
+                        index = i;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        
+        return index;
+    }
+}

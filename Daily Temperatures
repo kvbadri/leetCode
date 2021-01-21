@@ -1,0 +1,23 @@
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        int[] output_array = new int[T.length];
+        int current_element, next_element;
+        
+        for(int k = 0; k<output_array.length;k++){
+            output_array[k] = 0;            
+        }
+        
+        for(int i=0; i<T.length-1; i++){
+            for(int j=i+1;j<T.length;j++){
+                current_element = T[i];
+                next_element = T[j];                
+                if(current_element < next_element){
+                    output_array[i] = j-i;
+                    break;
+                }//End of if block                
+            }//End of j loop            
+        }//End of i loop
+        
+        return output_array;
+    }//end of dailyTemperatures
+}//end of class

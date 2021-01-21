@@ -1,0 +1,20 @@
+class Solution(object):
+    def numSteps(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count = 0
+        bnum = int(s,2)
+        print(bnum)  
+        
+        while bnum != 1:
+            if bnum % 2 == 0:
+                bnum = bnum/2
+                count = count + 1
+            else:
+                bnum = bnum + 1
+                count = count + 1
+                
+        
+        return count

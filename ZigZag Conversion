@@ -1,0 +1,57 @@
+class Solution {
+    public String convert(String s, int numRows) {    
+                
+        HashMap<Integer, ArrayList<String>> hm = new HashMap<>();        
+        
+        //Creating Array of ArrayList                 
+        ArrayList<String>[] lis = new ArrayList[numRows];   
+        
+        int len = s.length();
+        String temp;
+        int count = 0,index=0;
+        
+        char[] input = new char[len];
+        input = s.toCharArray();
+        
+        //Initializing ArrayList
+        for (int i = 0; i < numRows; i++) { 
+            lis[i] = new ArrayList<String>(); 
+        }
+        
+        try{
+              while(len != index){
+                if(count%2 == 0){
+                    for(int i=0;i<numRows;i++){                    
+                        temp = String.valueOf(input[index]);                
+                        lis[i].add(temp);
+                        hm.put(i,lis[i]);
+                        index++;
+                    }
+                    count++;
+                }else if(count%2 != 0){
+                    for(int i=numRows-2;i>0;i--){                        
+                        temp = String.valueOf(input[index]);                        
+                        lis[i].add(temp);
+                        hm.put(i,lis[i]);
+                        index++;
+                    }
+                    count++;
+                }
+            }  
+        }catch(ArrayIndexOutOfBoundsException e){
+            
+        }
+        
+        //Converting ArrayList to a String
+        StringBuilder outputString = new StringBuilder();
+        
+        for (int i = 0; i < numRows; i++) { 
+            for (int j = 0; j < lis[i].size(); j++) {                 
+                String a = lis[i].get(j);
+                outputString.append(a);
+            }              
+        } 
+        
+        return outputString.toString();
+    }
+}

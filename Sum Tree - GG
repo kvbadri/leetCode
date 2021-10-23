@@ -1,0 +1,32 @@
+class Solution
+{
+    int total = 0;
+	boolean isSumTree(Node root)
+	{
+	    if(root.left == null && root.right == null){
+	        return true;
+	    }
+	    sum(root.left);
+	    sum(root.right);
+	    
+        if(total == root.data){
+            return true;
+        }else{
+            return false;
+        }
+	}
+	
+	int sum(Node node){
+	    if(node == null){
+	        return total;
+	    }
+	    
+	    total = total + node.data;
+	    sum(node.left);
+	    sum(node.right);
+	    
+	    return total;
+	}
+	
+	
+}

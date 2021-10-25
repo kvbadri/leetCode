@@ -1,0 +1,23 @@
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> resultList = new ArrayList<>();
+        HashMap<Integer, Integer> ht = new HashMap<>();
+        
+        for(int i=0;i<nums.length;i++){
+            if(ht.containsKey(nums[i])){
+                Integer count = ht.get(nums[i]);
+                ht.put(nums[i], ++count);
+            }else{
+                ht.put(nums[i], 1);
+            }    
+        }
+        
+        for (Map.Entry<Integer, Integer> set : ht.entrySet()) {
+            if(set.getValue() > 1){
+                resultList.add(set.getKey());
+            }
+        }
+        
+        return resultList;
+    }
+}

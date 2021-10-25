@@ -1,0 +1,70 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+        int result, presult;
+    int getDepth(TreeNode node, int searchVal, int height){
+        
+        if(node == null){
+            return 0;
+        }
+        
+        if(node.val == searchVal){
+            return height;
+        }else{
+            result = getDepth(node.left, searchVal, height+1);
+            if(result != 0){
+                return result;
+            }
+            result = getDepth(node.right, searchVal, height+1);
+        }          
+        return result;        
+    }
+        
+    
+    int getParent(TreeNode node, int searchVal, int parent){
+        if(node == null){
+            return -1;
+        }
+        
+        if(node.val == searchVal){
+            return parent;
+        }else{
+            presult =  getParent(node.left, searchVal, node.val);
+            if(presult != -1){
+                return presult;
+            }
+            presult = getParent(node.right, searchVal, node.val);
+        }
+        
+        return presult;
+    }
+    
+    public boolean isCousins(TreeNode root, int x, int y) {
+        boolean isCBT = false;
+        
+        int xheight = getDepth(root, x, 1);
+        int yheight = getDepth(root, y, 1);        
+        
+        int xParent = getParent(root, x, -1);
+        int yParent = getParent(root, y, -1);        
+        
+        if((xheight == yheight) && (xParent != yParent)){
+            isCBT = true;
+        }
+        
+        return isCBT;
+    }
+}

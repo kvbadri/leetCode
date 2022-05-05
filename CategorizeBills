@@ -32,7 +32,11 @@ public class CategorizeBills
     }
     
     void getResults(Dictionary<string, double> categoryHash){
-        Console.WriteLine("*******************");
+        Console.WriteLine("Enter the statement period");
+		string statementPeriod = Console.ReadLine();	
+		Console.WriteLine("*******************");
+		Console.WriteLine("Statement Period: " + statementPeriod);
+		Console.WriteLine("*******************");
         foreach (KeyValuePair<string, double> pair in categoryHash)
         {
             Console.WriteLine(pair.Key + ": " + pair.Value);

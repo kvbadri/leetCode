@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+public class CategorizeBills
+{
+    public static void Main(string[] args)
+    {
+        // Create Dictionary.
+        CategorizeBills categorizebills = new CategorizeBills();
+        Dictionary<string, double> hash = new Dictionary<string, double>();
+        
+        hash = categorizebills.categorizePurchase(hash);
+        categorizebills.getResults(hash);
+    }
+    
+    Dictionary<string, double> categorizePurchase(Dictionary<string, double> hash){
+        for(int i=0;i>=0; i++){
+            Console.WriteLine("Enter category name:");
+            string categoryName = Console.ReadLine();
+            if(categoryName.Equals("break")){
+                break;
+            }
+            Console.WriteLine("Enter category value:");
+            double categoryValue = Convert.ToDouble(Console.ReadLine());
+            if(hash.ContainsKey(categoryName)){
+                hash[categoryName] = hash[categoryName] + categoryValue;
+            }else{
+                hash.Add(categoryName, categoryValue);
+            }
+        }
+        
+        return hash;
+    }
+    
+    void getResults(Dictionary<string, double> categoryHash){
+        Console.WriteLine("*******************");
+        foreach (KeyValuePair<string, double> pair in categoryHash)
+        {
+            Console.WriteLine(pair.Key + ": " + pair.Value);
+        }
+        Console.WriteLine("*******************");
+    }
+}
